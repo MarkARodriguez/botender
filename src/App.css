@@ -1,0 +1,93 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 20vw;
+  max-height: 150px;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #231f20;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-select, .App-button {
+  width: 60%; /* Adjust width as needed */
+  max-width: 300px; /* Maximum width */
+  margin: 10px 0; /* Vertical spacing */
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.App-input {
+  width: 60%; /* Adjust width as needed */
+  max-width: 700px; /* Maximum width */
+  min-width: 500px;
+  margin: 10px 0; /* Vertical spacing */
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  min-height: 140px;
+}
+
+.App-button {
+  background: transparent;
+  color: #231f20;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: white;
+}
+
+
+.App-loading {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #ee6c1d;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: App-spin 2s linear infinite;
+}
+
+.App-recipe-output {
+  margin: 20px; /* Add more margin */
+  padding: 10px;
+  text-align: center;
+  font-size: 14px; /* Smaller font size */
+  max-width: 700px; /* Maximum width */
+  width: 80%; /* Relative width */
+  background: rgba(255, 255, 255, 0.1); /* Slight background for readability */
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+}
+
+.App-recipe-output p {
+  margin: 10px 0;
+}
+
+@keyframes App-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
