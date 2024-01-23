@@ -15,14 +15,13 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://18.188.217.185:3000/generate-recipe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ tequila, ingredients }),
-      });
-
+      const response = await fetch('https://bot.sourcemachines.com:3000/generate-recipe', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ tequila, ingredients }),
+});
       const data = await response.json();
       setRecipe(data.recipe.message.content);
       setIsLoading(false);
