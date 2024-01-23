@@ -91,3 +91,37 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Add this media query for phones */
+@media (max-width: 768px) {
+  .App-logo {
+    height: 15vw; /* Adjust as needed for smaller screens */
+    max-height: 100px; /* Adjust as needed for smaller screens */
+  }
+
+  .App-header {
+    font-size: calc(8px + 2vmin); /* Adjust font size for smaller screens */
+  }
+
+  .App-select, .App-button {
+    width: 80%; /* Adjust width for smaller screens */
+    max-width: 100%; /* Maximum width for smaller screens */
+  }
+
+  .App-input {
+    width: 80%; /* Adjust width for smaller screens */
+    max-width: 100%; /* Maximum width for smaller screens */
+    min-width: unset; /* Remove minimum width for smaller screens */
+  }
+
+  .App-loading {
+    width: 30px; /* Adjust size for smaller screens */
+    height: 30px; /* Adjust size for smaller screens */
+  }
+
+  .App-recipe-output {
+    font-size: 12px; /* Smaller font size for smaller screens */
+    max-width: 100%; /* Maximum width for smaller screens */
+    width: 90%; /* Relative width for smaller screens */
+  }
+}
