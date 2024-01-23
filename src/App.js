@@ -15,7 +15,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://18.188.217.185:3000/generate-recipe', {
+      const response = await fetch('http://18.188.217.185:3000/generate-recipe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
