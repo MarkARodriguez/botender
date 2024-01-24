@@ -8,21 +8,37 @@ function App() {
   const [ingredients, setIngredients] = useState('');
   const [recipe, setRecipe] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showButton, setShowButton] = useState(true);
 
   const tequilas = ["Tequila Añejo", "Tequila Reposado", "Tequila Blanco", "Tequila Gold"];
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!tequila || !ingredients) {
+      setErrorMessage("Please select a tequila type and list the ingredients.");
+      setShowButton(false);
+
+      // Clear the error message and show the button after 2 seconds
+      setTimeout(() => {
+        setErrorMessage('');
+        setShowButton(true);
+      }, 2000);
+
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       const response = await fetch('https://bot.sourcemachines.com:3000/generate-recipe', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ tequila, ingredients }),
-});
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ tequila, ingredients }),
+      });
       const data = await response.json();
       setRecipe(data.recipe.message.content);
       setIsLoading(false);
@@ -36,6 +52,8 @@ function App() {
     setTequila('');
     setIngredients('');
     setRecipe('');
+    setShowButton(true);
+    setErrorMessage('');
   };
 
   return (
@@ -44,9 +62,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         {!recipe && !isLoading && (
           <form onSubmit={handleSubmit}>
-          <p style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>WHAT TEQUILA ARE WE USING TODAY?</p>
-
-
+            <p style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>WHAT TEQUILA ARE WE USING TODAY?</p>
             <select value={tequila} onChange={(e) => setTequila(e.target.value)} className="App-select">
               <option value="">Select Tequila</option>
               {tequilas.map((teq, index) => (
@@ -60,25 +76,25 @@ function App() {
               onChange={(e) => setIngredients(e.target.value)}
               placeholder="Enter other ingredients"
             />
-            <button type="submit" className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Make A Drink</button>
-
+            {showButton ? (
+              <button type="submit" className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Make A Drink</button>
+            ) : (
+              <p style={{ color: 'red' }}>{errorMessage}</p>
+            )}
           </form>
         )}
-
         {isLoading && <div className="App-loading"></div>}
-
         {recipe && (
-        <div className="App-recipe-output">
-          <strong>Recipe:</strong>
-          <p>{recipe}</p>
-          <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Second Round</button>
-
-        </div>
-)}
+          <div className="App-recipe-output">
+            <strong>Recipe:</strong>
+            <p>{recipe}</p>
+            <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Second Round</button>
+          </div>
+        )}
       </header>
       <footer className="App-footer">
-      <p>Disclaimer: The Suerte Botender's here to suggest cocktails based on your ingredients, but let's be clear—it's not as great as a real mixologist. If your drink doesn't hit the mark, it's not the Botender’s fault. Enjoy responsibly and remember, it's just a digital recipe bot. Good luck!</p>
-    </footer>
+        <p>Disclaimer: The Suerte Botender's here to suggest cocktails based on your ingredients, but let's be clear—it's not as great as a real mixologist. If your drink doesn't hit the mark, it's not the Botender’s fault. Enjoy responsibly and remember, it's just a digital recipe bot. Good luck!</p>
+      </footer>
     </div>
   );
 }
