@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.png';
 import './App.css';
+import './fonts.css';
 
 function App() {
   const [tequila, setTequila] = useState('');
@@ -43,7 +44,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         {!recipe && !isLoading && (
           <form onSubmit={handleSubmit}>
-             <p>WHAT TEQUILA ARE WE USING TODAY?</p>
+          <p style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>WHAT TEQUILA ARE WE USING TODAY?</p>
+
 
             <select value={tequila} onChange={(e) => setTequila(e.target.value)} className="App-select">
               <option value="">Select Tequila</option>
@@ -51,15 +53,15 @@ function App() {
                 <option key={index} value={teq}>{teq}</option>
               ))}
             </select>
-            <p>LIST OTHER INGREDIENTS YOU HAVE ON HAND:</p>
-
+            <p style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>LIST OTHER INGREDIENTS YOU HAVE ON HAND:</p>
             <textarea
               className="App-input"
               value={ingredients}
               onChange={(e) => setIngredients(e.target.value)}
               placeholder="Enter other ingredients"
             />
-            <button type="submit" className="App-button">Make drink</button>
+            <button type="submit" className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Make A Drink</button>
+
           </form>
         )}
 
@@ -69,10 +71,14 @@ function App() {
         <div className="App-recipe-output">
           <strong>Recipe:</strong>
           <p>{recipe}</p>
-          <button onClick={resetForm} className="App-button">Second Round</button>
+          <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Second Round</button>
+
         </div>
 )}
       </header>
+      <footer className="App-footer">
+      <p>Disclaimer: The Suerte Botender's here to suggest cocktails based on your ingredients, but let's be clear—it's not as great as a real mixologist. If your drink doesn't hit the mark, it's not the Botender’s fault. Enjoy responsibly and remember, it's just a digital recipe bot. Good luck!</p>
+    </footer>
     </div>
   );
 }

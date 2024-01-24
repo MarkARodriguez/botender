@@ -27,7 +27,7 @@
 
 .App-select, .App-button {
   width: 60%; /* Adjust width as needed */
-  max-width: 300px; /* Maximum width */
+  max-width: 250px; /* Maximum width */
   margin: 10px 0; /* Vertical spacing */
   padding: 10px;
   border-radius: 5px;
@@ -35,7 +35,16 @@
   background: transparent;
   color: white;
   border: 2px solid white;
+  font-size: calc(10px + 2vmin);
+
 }
+
+.App-select {
+  -webkit-appearance: none;  /* Removes default styling in WebKit browsers */
+  -moz-appearance: none;     /* Removes default styling in Firefox */
+  appearance: none;          /* Removes default styling */
+}
+
 
 .App-input {
   width: 60%; /* Adjust width as needed */
@@ -74,12 +83,9 @@
   margin: 20px; /* Add more margin */
   padding: 10px;
   text-align: center;
-  font-size: 14px; /* Smaller font size */
+  font-size: 18px; /* Smaller font size */
   max-width: 700px; /* Maximum width */
   width: 80%; /* Relative width */
-  background: rgba(255, 255, 255, 0.1); /* Slight background for readability */
-  border: 2px solid white;
-  border-radius: 10px;
   color: white;
 }
 
@@ -124,4 +130,21 @@
     max-width: 100%; /* Maximum width for smaller screens */
     width: 90%; /* Relative width for smaller screens */
   }
+  .App-footer {
+    font-size: 10px; /* Adjust the font size for smaller screens */
+  }
+}
+.App-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12px; /* Smaller font size */
+  color: #a9a9a9; /* Light grey color */
+  padding: 10px 0;
+  background-color: #231f20; /* Match the header background or choose another color */
+}
+
+.App-footer p {
+  margin: 0;
 }
