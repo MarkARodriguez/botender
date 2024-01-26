@@ -11,7 +11,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [showButton, setShowButton] = useState(true);
 
-  const tequilas = ["Tequila Añejo", "Tequila Reposado", "Tequila Blanco", "Tequila Gold"];
+  const tequilas = ["Suerte Tequila Añejo", "Suerte Tequila Reposado", "Suerte Tequila Blanco", "Suerte Tequila Gold"];
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -62,7 +62,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         {!recipe && !isLoading && (
           <form onSubmit={handleSubmit}>
-            <p style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>WHAT TEQUILA ARE WE USING TODAY?</p>
+            <p style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>WHICH TEQUILA ARE WE USING TODAY?</p>
             <select value={tequila} onChange={(e) => setTequila(e.target.value)} className="App-select">
               <option value="">Select Tequila</option>
               {tequilas.map((teq, index) => (
@@ -77,7 +77,7 @@ function App() {
               placeholder="Enter other ingredients"
             />
             {showButton ? (
-              <button type="submit" className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Make A Drink</button>
+              <button type="submit" className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>MAKE A DRINK</button>
             ) : (
               <p style={{ color: 'red' }}>{errorMessage}</p>
             )}
@@ -88,7 +88,7 @@ function App() {
           <div className="App-recipe-output">
             <strong>Recipe:</strong>
             <p>{recipe}</p>
-            <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>Second Round</button>
+            <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>SECOND ROUND</button>
           </div>
         )}
       </header>
