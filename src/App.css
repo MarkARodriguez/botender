@@ -114,6 +114,7 @@
     min-height: 10%;
     max-width: 100%; /* Maximum width for smaller screens */
     min-width: unset; /* Remove minimum width for smaller screens */
+    margin-bottom: 40px;
   }
 
   .App-loading {
