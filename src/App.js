@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.png';
+import loading1 from './assets/loading1.svg';
+import loading2 from './assets/loading2.svg';
+import loading3 from './assets/loading3.svg';
+import loading4 from './assets/loading4.svg';
 import './App.css';
 import './fonts.css';
 
@@ -10,8 +14,21 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showButton, setShowButton] = useState(true);
+  const [loadingImageIndex, setLoadingImageIndex] = useState(0);
 
   const tequilas = ["Suerte Tequila Añejo", "Suerte Tequila Reposado", "Suerte Tequila Blanco", "Suerte Tequila Gold"];
+
+  useEffect(() => {
+    let interval;
+    if (isLoading) {
+      interval = setInterval(() => {
+        setLoadingImageIndex(prevIndex => (prevIndex + 1) % 4); // Cycle through 0 to 3
+      }, 250); // Change image every 250ms or as desired
+    } else {
+      setLoadingImageIndex(0); // Reset to the first image when not loading
+    }
+    return () => clearInterval(interval);
+  }, [isLoading]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -83,7 +100,11 @@ function App() {
             )}
           </form>
         )}
-        {isLoading && <div className="App-loading"></div>}
+        {isLoading && (
+          <div className="App-loading">
+            <img src={[loading1, loading2, loading3, loading4][loadingImageIndex]} alt="Loading" />
+          </div>
+        )}
         {recipe && (
           <div className="App-recipe-output">
             <strong>Recipe:</strong>
