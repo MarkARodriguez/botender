@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.png';
+import logo from './logo.svg';
 import loading1 from './assets/loading1.svg';
 import loading2 from './assets/loading2.svg';
 import loading3 from './assets/loading3.svg';
@@ -15,6 +15,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
   const [showButton, setShowButton] = useState(true);
   const [loadingImageIndex, setLoadingImageIndex] = useState(0);
+  const [recipeParts, setRecipeParts] = useState({ title: '', ingredients: '', instructions: '' });
 
   const tequilas = ["Suerte Tequila Añejo", "Suerte Tequila Reposado", "Suerte Tequila Blanco", "Suerte Tequila Gold"];
 
@@ -23,7 +24,7 @@ function App() {
     if (isLoading) {
       interval = setInterval(() => {
         setLoadingImageIndex(prevIndex => (prevIndex + 1) % 4); // Cycle through 0 to 3
-      }, 250); // Change image every 250ms or as desired
+      }, 250); // Change image every 250ms
     } else {
       setLoadingImageIndex(0); // Reset to the first image when not loading
     }
@@ -37,7 +38,6 @@ function App() {
       setErrorMessage("Please select a tequila type and list the ingredients.");
       setShowButton(false);
 
-      // Clear the error message and show the button after 2 seconds
       setTimeout(() => {
         setErrorMessage('');
         setShowButton(true);
@@ -57,12 +57,35 @@ function App() {
         body: JSON.stringify({ tequila, ingredients }),
       });
       const data = await response.json();
-      setRecipe(data.recipe.message.content);
+      const processedRecipe = processRecipeText(data.recipe.message.content);
+      setRecipeParts(processedRecipe);
       setIsLoading(false);
     } catch (error) {
       console.error('Error:', error);
       setIsLoading(false);
     }
+  };
+
+  const processRecipeText = (recipeText) => {
+    const parts = {
+      title: '',
+      ingredients: '',
+      instructions: '',
+    };
+
+    if (recipeText.includes("Recipe:")) {
+      parts.title = recipeText.split("Ingredients:")[0];
+    }
+    
+    if (recipeText.includes("Ingredients:")) {
+      parts.ingredients = recipeText.split("Ingredients:")[1].split("Instructions:")[0];
+    }
+    
+    if (recipeText.includes("Instructions:")) {
+      parts.instructions = recipeText.split("Instructions:")[1];
+    }
+
+    return parts;
   };
 
   const resetForm = () => {
@@ -71,13 +94,19 @@ function App() {
     setRecipe('');
     setShowButton(true);
     setErrorMessage('');
+    setRecipeParts({ title: '', ingredients: '', instructions: '' });
+  };
+
+  // Helper function to check if recipeParts is empty
+  const isRecipePartsEmpty = () => {
+    return !recipeParts.title && !recipeParts.ingredients && !recipeParts.instructions;
   };
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {!recipe && !isLoading && (
+        {!isLoading && isRecipePartsEmpty() && (
           <form onSubmit={handleSubmit}>
             <p style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>WHICH TEQUILA ARE WE USING TODAY?</p>
             <select value={tequila} onChange={(e) => setTequila(e.target.value)} className="App-select">
@@ -105,10 +134,21 @@ function App() {
             <img src={[loading1, loading2, loading3, loading4][loadingImageIndex]} alt="Loading" />
           </div>
         )}
-        {recipe && (
+        {!isLoading && !isRecipePartsEmpty() && (
           <div className="App-recipe-output">
-            <strong>Recipe:</strong>
-            <p>{recipe}</p>
+            {recipeParts.title && <strong>{recipeParts.title.trim()}</strong>}
+            {recipeParts.ingredients && (
+              <div>
+                <strong>Ingredients:</strong>
+                <p>{recipeParts.ingredients.trim()}</p>
+              </div>
+            )}
+            {recipeParts.instructions && (
+              <div>
+                <strong>Instructions:</strong>
+                <p>{recipeParts.instructions.trim()}</p>
+              </div>
+            )}
             <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>SECOND ROUND</button>
           </div>
         )}
