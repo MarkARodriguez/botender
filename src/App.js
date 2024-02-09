@@ -10,7 +10,6 @@ import './fonts.css';
 function App() {
   const [tequila, setTequila] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [recipe, setRecipe] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showButton, setShowButton] = useState(true);
@@ -91,7 +90,6 @@ function App() {
   const resetForm = () => {
     setTequila('');
     setIngredients('');
-    setRecipe('');
     setShowButton(true);
     setErrorMessage('');
     setRecipeParts({ title: '', ingredients: '', instructions: '' });
