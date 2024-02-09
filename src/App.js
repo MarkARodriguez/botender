@@ -148,6 +148,11 @@ function App() {
               </div>
             )}
             <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>SECOND ROUND</button>
+            <p style={{ color: '#ED6C23', fontSize: '16px' }}>
+  Mix, snap, sip, and share your Botender masterpiece on social media 
+  with the hashtag #suertebotender. And don't forget to tag @suertetequila. 
+  Cheers to virtual cheers!
+</p>
           </div>
         )}
       </header>
