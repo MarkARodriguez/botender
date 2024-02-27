@@ -150,7 +150,7 @@ function App() {
             <button onClick={resetForm} className="App-button" style={{ fontFamily: "'zai_OlivettiLettera22Typewriter', sans-serif" }}>SECOND ROUND</button>
             <p style={{ color: '#ED6C23', fontSize: '16px' }}>
   Mix, snap, sip, and share your Botender masterpiece on social media 
-  with the hashtag #suertebotender. And don't forget to tag @suertetequila. 
+  with the hashtag #suertebotender. And don't forget to tag <a href="https://www.instagram.com/suertetequila/" target="_blank" rel="noopener noreferrer" style={{ color: '#ED6C23' }}>@suertetequila</a>. 
   Cheers to virtual cheers!
 </p>
           </div>
