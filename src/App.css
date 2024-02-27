@@ -45,8 +45,6 @@
 .App-select {
   font-size: 18px;
   font-family: 'Roboto Condensed', sans-serif;
-  background-color: gray; /* Set the background color */
-
   -webkit-appearance: none;  /* Removes default styling in WebKit browsers */
   -moz-appearance: none;     /* Removes default styling in Firefox */
   appearance: none;          /* Removes default styling */
