@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -41,6 +43,8 @@
 }
 
 .App-select {
+  font-size: 18px;
+  font-family: 'Roboto Condensed', sans-serif;
   -webkit-appearance: none;  /* Removes default styling in WebKit browsers */
   -moz-appearance: none;     /* Removes default styling in Firefox */
   appearance: none;          /* Removes default styling */
