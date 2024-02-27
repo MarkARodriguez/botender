@@ -45,6 +45,8 @@
 .App-select {
   font-size: 18px;
   font-family: 'Roboto Condensed', sans-serif;
+  min-width: 520px;
+
   -webkit-appearance: none;  /* Removes default styling in WebKit browsers */
   -moz-appearance: none;     /* Removes default styling in Firefox */
   appearance: none;          /* Removes default styling */
@@ -113,6 +115,8 @@
   .App-select, .App-button {
     width: 80%; /* Adjust width for smaller screens */
     max-width: 100%; /* Maximum width for smaller screens */
+    min-width: unset; /* Remove minimum width for smaller screens */
+
   }
 
   .App-input {
