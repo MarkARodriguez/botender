@@ -70,7 +70,7 @@
 .App-button {
   background: transparent;
   color: #231f20;
-  border: 2px solid white;
+  border: 1px solid white;
   cursor: pointer;
   transition: background-color 0.3s;
   color: white;
